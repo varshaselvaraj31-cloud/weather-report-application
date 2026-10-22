@@ -5,9 +5,9 @@ import './App.css';
 const GEOCODING_URL = 'https://geocoding-api.open-meteo.com/v1/search';
 const FORECAST_URL = 'https://api.open-meteo.com/v1/forecast';
 
-function describeWeather(code) {
-  if (code === 0) return { label: 'Clear sky', icon: '☀️' };
-  if ([1, 2].includes(code)) return { label: 'Partly cloudy', icon: '🌤️' };
+function describeWeather(code, isDay = 1) {
+  if (code === 0) return { label: 'Clear sky', icon: isDay ? '☀️' : '🌙' };
+  if ([1, 2].includes(code)) return { label: 'Partly cloudy', icon: isDay ? '🌤️' : '☁️' };
   if (code === 3) return { label: 'Overcast', icon: '☁️' };
   if ([45, 48].includes(code)) return { label: 'Foggy', icon: '🌫️' };
   if ([51, 53, 55, 56, 57].includes(code)) return { label: 'Drizzle', icon: '🌦️' };
@@ -104,7 +104,9 @@ function WeatherDashboard() {
     searchWeather(query);
   }
 
-  const conditions = weather ? describeWeather(weather.current.weather_code) : null;
+  const conditions = weather
+    ? describeWeather(weather.current.weather_code, weather.current.is_day)
+    : null;
   const daily = weather?.daily;
 
   return (
