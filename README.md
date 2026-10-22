@@ -3,6 +3,15 @@
 A responsive React weather app for searching a city and viewing live conditions
 with a five-day forecast.
 
+## Live website
+
+After the GitHub Pages deployment completes, visit
+[Atmos Weather](https://varshaselvaraj31-cloud.github.io/weather-report-application/).
+
+To enable deployment, open the repository's **Settings → Pages** and set
+**Build and deployment → Source** to **GitHub Actions**. The workflow then
+builds and publishes the app whenever changes are pushed to `main`.
+
 ## Run locally
 
 ```bash
